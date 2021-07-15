@@ -14,7 +14,7 @@ The JukePi application runs on a [RaspberryPi] (https://www.raspberrypi.org) and
 With this system assuring clients of continued entertainment while social distancing, we can estimate an increase of customers and also revenue towards businesses that would implement this.
 
 ## Deployment Steps
-###Requirements:
+### Requirements:
     - Raspberry Pi ( Any version works )
         - Raspbian (http://www.raspbian.org)
         - Python version 3 (https://projects.raspberrypi.org/en/projects/generic-python-install-python3)
