@@ -1,9 +1,9 @@
-#JukePi
+# JukePi
 
-##Description 
+## Description 
 
 
-##Deployment Steps
+## Deployment Steps
     Requirements:
         - Raspberry Pi ( Any version works )
             - Raspbian [Click here for Installation guide] (http://www.raspbian.org)
@@ -15,7 +15,7 @@
             - Any web server stack publicly accessible 
             - PHP ver5 or greater
 		
-##Instructions:
+## Instructions:
     Server
         - Pull folder JukePiServer into your web directory
         - Open folder
@@ -31,7 +31,7 @@
             DATABASE=
         - Update your call back URL on BEEM Two Way Sms dashboard
 
-##RaspberryPi
+## RaspberryPi
 	- Pull the folder JukePi to your RaspberryPi
 	- Open the directory where the folder is downloaded
 	- Open terminal in the directory
