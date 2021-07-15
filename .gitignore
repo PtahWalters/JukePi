@@ -1,0 +1,8 @@
+# ignore all logs
+*.log
+
+# ignore mac specific hidden files
+.DS_Store
+
+#ignore env files
+.env
