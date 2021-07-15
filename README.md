@@ -47,7 +47,7 @@ With this system assuring clients of continued entertainment while social distan
 	- Open terminal in the directory
 	- Run `nohup python play.py &`
 
-##FAQ
+## FAQ
 If you find or notice any bugs please report them by sending us an e-mail info [at] qroo [dot] co [dot] tz . We will fix bugs as soon as possible. If you have any feature suggestions, please create an issue with detailed information.
 
 ## License
