@@ -97,10 +97,32 @@ class Jukebox {
 
     function AcceptRequest(){
         //Get SMS
-        //REMOVE BEEM TEXT
-        //FORMAT SEARCH
+        //Make sure that it is a POST request.
+        if(strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') != 0){
+            die('Request method must be POST!');
+        }
 
-        $search_term = "alaine%20victory";
+        //Make sure that the content type of the POST request has been set to application/json
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if(strcasecmp($contentType, 'application/json') != 0){
+            die('Content type must be: application/json');
+        }
+
+        //Receive the RAW post data.
+        $content = trim(file_get_contents("php://input"));
+
+        //Attempt to decode the incoming RAW post data from JSON.
+        $decoded = json_decode($content, true);
+
+        //If json_decode failed, the JSON is invalid.
+        if(!is_array($decoded)){
+            die('Received content contained invalid JSON!');
+        }
+
+        //FORMAT SEARCH
+        $search_term = rawurlencode(trim($decoded['message']['text']));
+
+        $requested_by = trim($decoded['from']);
 
         $curl = curl_init();
 
@@ -132,14 +154,14 @@ class Jukebox {
 
             if (filter_var($song, FILTER_VALIDATE_URL) === FALSE) {
                 //song not found
-                $this->RespondErr("255715190934");
+                $this->RespondErr($requested_by);
             }else{
                 //song found, add to queue
                 $db =& $this->db();
                 $query = "INSERT INTO jukebox_queue VALUES(NULL, '$song')";
 
                 if ($db->query($query) === TRUE) {
-                    $this->RespondSuccess("255715190934");
+                    $this->RespondSuccess($requested_by);
                 }else{
                     //TODO: Log and notify administrator
                     echo  "something went wrong with the request";
