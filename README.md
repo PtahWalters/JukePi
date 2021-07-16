@@ -1,15 +1,19 @@
 # JukePi
 
 ## Description 
-Simple application with only one goal in mind, keep people entertained during the social distancing era.
+We are bringing the 90’s vibe back for the new millennials.
+
+This simple application aims to entertain while still maintain the social distance measures.
 
 With the continued rise in COVID 19 cases within the country, it has been difficult to keep businesses that rely on entertainment running, bars, restaurants and other social gathering dependent businesses have been hit  the hardest.
 
-Before COVID, one of the most entertaining social gathering activities within Dar es Salaam was Karaoke, but with the current safety precautions, it is not advisable to continue with the trend, and this is where JukePi comes to play.
+One of Tanzania’s main entertainment driver for all age groups, is Karaoke nights. However currently with all the Covid-19 safety precautions, it is not advisable to continue with the trend, and this is where JukePi comes to play.
 
-JukePi is a digital Jukebox which turns any social entertainment spot into a digital JukeBox machine, no DJ required and no one managing the music, just clients playing what they want on by simply sending an SMS.
+JukePi is a digital Jukebox which turns any social entertainment spot into a digital JukeBox machine, no DJ required! just You playing what you want simply by sending an SMS.
 
 The JukePi application runs on a [RaspberryPi] (https://www.raspberrypi.org) and is simple to integrate with any music system since it only requires a 3.5mm headphone jack to link.
+
+This is the new era of entertainment. 
 
 With this system assuring clients of continued entertainment while social distancing, we can estimate an increase of customers and also revenue towards businesses that would implement this.
 
