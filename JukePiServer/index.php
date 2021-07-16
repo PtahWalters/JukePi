@@ -96,20 +96,27 @@ class Jukebox {
     }
 
     function AcceptRequest(){
+        $db =& $this->db();
         //Get SMS
+
         //Make sure that it is a POST request.
         if(strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') != 0){
             die('Request method must be POST!');
         }
 
-        //Make sure that the content type of the POST request has been set to application/json
-        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-        if(strcasecmp($contentType, 'application/json') != 0){
-            die('Content type must be: application/json');
-        }
-
         //Receive the RAW post data.
         $content = trim(file_get_contents("php://input"));
+
+        //Log query
+        $logquery = "INSERT INTO jukebox_log VALUES(NULL, NULL, '$content')";
+        if ($db->query($logquery) === TRUE) {
+            echo "successfully logged";
+        }else{
+            //TODO: Log and notify administrator
+            echo  "something went wrong with the request";
+            echo $db->error;
+        }
+
 
         //Attempt to decode the incoming RAW post data from JSON.
         $decoded = json_decode($content, true);
@@ -120,7 +127,9 @@ class Jukebox {
         }
 
         //FORMAT SEARCH
-        $search_term = rawurlencode(trim($decoded['message']['text']));
+        $cleanMessage = trim(str_replace("play ", "", strtolower($decoded['message']['text'])));
+        $search_term = rawurlencode($cleanMessage);
+
 
         $requested_by = trim($decoded['from']);
 
@@ -157,7 +166,6 @@ class Jukebox {
                 $this->RespondErr($requested_by);
             }else{
                 //song found, add to queue
-                $db =& $this->db();
                 $query = "INSERT INTO jukebox_queue VALUES(NULL, '$song')";
 
                 if ($db->query($query) === TRUE) {
@@ -195,7 +203,7 @@ class Jukebox {
                 $delID = $row['id'];
             }
         } else {
-            echo "0";
+            echo "";
         }
         
         if ($db->query("DELETE FROM jukebox_queue WHERE id = ".$delID) === TRUE):
